@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/keyboard5.ogg-3e77fd487c5736cef5ef9e5fdc7e769b.oggstr"
+
+[deps]
+
+source_file="res://sfx/keyboard/keyboard5.ogg"
+dest_files=[ "res://.import/keyboard5.ogg-3e77fd487c5736cef5ef9e5fdc7e769b.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

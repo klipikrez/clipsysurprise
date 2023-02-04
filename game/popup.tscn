@@ -2,7 +2,7 @@
 
 [ext_resource path="res://word.gd" type="Script" id=1]
 [ext_resource path="res://game/popup.gd" type="Script" id=2]
-[ext_resource path="res://ui/window.png" type="Texture" id=3]
+[ext_resource path="res://tex/prozor og.png" type="Texture" id=3]
 [ext_resource path="res://skull.png" type="Texture" id=4]
 [ext_resource path="res://ui/Consolas.ttf" type="DynamicFontData" id=5]
 
@@ -16,10 +16,10 @@ Label/colors/font_color = Color( 0.45098, 0.45098, 0.45098, 1 )
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 3 )
-region_rect = Rect2( 0, 0, 230, 231 )
-margin_left = 32.0
-margin_right = 32.0
-margin_top = 32.0
+region_rect = Rect2( 0, 0, 300, 313 )
+margin_left = 67.0
+margin_right = 30.0
+margin_top = 59.0
 margin_bottom = 32.0
 
 [node name="skull" type="Panel"]
@@ -32,8 +32,8 @@ script = ExtResource( 2 )
 [node name="TextureRect" type="TextureRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 32.0
-margin_top = 32.0
+margin_left = 31.0
+margin_top = 58.0
 margin_right = -32.0
 margin_bottom = -32.0
 texture = ExtResource( 4 )

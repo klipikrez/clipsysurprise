@@ -1,7 +1,8 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://modeli/basicStio.tscn" type="PackedScene" id=1]
 [ext_resource path="res://modeli/material_0.material" type="Material" id=2]
+[ext_resource path="res://tex/flesWmm.png" type="Texture" id=3]
 [ext_resource path="res://modeli/Screen.gd" type="Script" id=4]
 [ext_resource path="res://nekonzer.material" type="Material" id=5]
 [ext_resource path="res://konzer.material" type="Material" id=6]
@@ -252,18 +253,6 @@ tracks/19/keys = {
 "update": 1,
 "values": [ true ]
 }
-tracks/20/type = "value"
-tracks/20/path = NodePath("../Cube002:material/0:emission_enabled")
-tracks/20/interp = 1
-tracks/20/loop_wrap = true
-tracks/20/imported = false
-tracks/20/enabled = true
-tracks/20/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
 
 [sub_resource type="Animation" id=4]
 resource_name = "New Anim2"
@@ -485,19 +474,19 @@ tracks/20/keys = {
 "values": [ true, false, true, false ]
 }
 tracks/21/type = "value"
-tracks/21/path = NodePath("../Cube002:material/0:emission_enabled")
+tracks/21/path = NodePath("../Cube002/OmniLight2:light_color")
 tracks/21/interp = 1
 tracks/21/loop_wrap = true
 tracks/21/imported = false
 tracks/21/enabled = true
 tracks/21/keys = {
-"times": PoolRealArray( 0, 1.9, 2.7, 3.9 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ false, true, false, true ]
+"times": PoolRealArray( 0, 22.2, 22.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 0, 0, 1 ), Color( 1, 0, 0, 1 ), Color( 0.172549, 1, 0, 1 ) ]
 }
 tracks/22/type = "value"
-tracks/22/path = NodePath("../Cube002/OmniLight2:light_color")
+tracks/22/path = NodePath("../Cube002:material/0:emission")
 tracks/22/interp = 1
 tracks/22/loop_wrap = true
 tracks/22/imported = false
@@ -506,19 +495,19 @@ tracks/22/keys = {
 "times": PoolRealArray( 0, 22.2, 22.3 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 0, 0, 1 ), Color( 1, 0, 0, 1 ), Color( 0.172549, 1, 0, 1 ) ]
+"values": [ Color( 1, 0, 0, 1 ), Color( 1, 0, 0, 1 ), Color( 0.00784314, 1, 0, 1 ) ]
 }
 tracks/23/type = "value"
-tracks/23/path = NodePath("../Cube002:material/0:emission")
+tracks/23/path = NodePath("../Cube002:material/0:emission_energy")
 tracks/23/interp = 1
 tracks/23/loop_wrap = true
 tracks/23/imported = false
 tracks/23/enabled = true
 tracks/23/keys = {
-"times": PoolRealArray( 0, 22.2, 22.3 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 1.8, 1.9, 2.6, 2.7, 3.8, 3.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 0, 0, 1 ), Color( 1, 0, 0, 1 ), Color( 0.00784314, 1, 0, 1 ) ]
+"values": [ 0.0, 2.0, 2.0, 0.0, 0.0, 2.0 ]
 }
 
 [sub_resource type="Animation" id=11]
@@ -1006,7 +995,7 @@ tracks/26/keys = {
 "values": [ true ]
 }
 tracks/27/type = "value"
-tracks/27/path = NodePath("../Cube002:material/0:emission_enabled")
+tracks/27/path = NodePath("../Cube002/OmniLight2:light_color")
 tracks/27/interp = 1
 tracks/27/loop_wrap = true
 tracks/27/imported = false
@@ -1015,27 +1004,15 @@ tracks/27/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ false ]
+"values": [ Color( 1, 0, 0, 1 ) ]
 }
 tracks/28/type = "value"
-tracks/28/path = NodePath("../Cube002/OmniLight2:light_color")
+tracks/28/path = NodePath("../Cube002:material/0:emission")
 tracks/28/interp = 1
 tracks/28/loop_wrap = true
 tracks/28/imported = false
 tracks/28/enabled = true
 tracks/28/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 1, 0, 0, 1 ) ]
-}
-tracks/29/type = "value"
-tracks/29/path = NodePath("../Cube002:material/0:emission")
-tracks/29/interp = 1
-tracks/29/loop_wrap = true
-tracks/29/imported = false
-tracks/29/enabled = true
-tracks/29/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
@@ -1344,6 +1321,12 @@ albedo_texture = ExtResource( 7 )
 metallic = 1.0
 metallic_texture = ExtResource( 8 )
 roughness = 0.17
+emission_enabled = true
+emission = Color( 1, 0, 0, 1 )
+emission_energy = 2.0
+emission_operator = 1
+emission_on_uv2 = false
+emission_texture = ExtResource( 3 )
 
 [node name="Spatial" type="Spatial"]
 
@@ -1353,7 +1336,7 @@ roughness = 0.17
 transform = Transform( 1, 0, 0, 0, 0.913992, 0.405732, 0, -0.405732, 0.913992, 0, 2.674, 5.208 )
 environment = SubResource( 1 )
 current = true
-fov = 41.7
+fov = 60.1
 
 [node name="Camera2" type="Camera" parent="svwe4"]
 transform = Transform( 0.878809, -0.43997, 0.18472, 0, 0.387113, 0.922032, -0.477174, -0.81029, 0.340198, 2.82095, 2.82925, 0.713971 )

@@ -1,6 +1,9 @@
 extends Node
 
+signal pong_done
+
 var animplayer: AnimationPlayer
+var ball: PongBall
 
 func play_sound(sound: AudioStream, volume: float = 0.0):
 	var player = AudioStreamPlayer.new()

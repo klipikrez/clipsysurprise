@@ -16,8 +16,8 @@ func ball_fall(body, player):
 	Global.ball._ready()
 	Global.ball.gravity = Global.ball.default_gravity
 	Global.ball.bounces = 0
-	if score2 == 2:
-		Global.emit_signal("pong_done")
+	if score1 + score2 == 6:
+		$ctrlc.visible = true
 
 func _process(delta):
 	if Input.is_action_just_pressed("close"):

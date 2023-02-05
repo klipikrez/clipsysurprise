@@ -3,7 +3,7 @@ extends Panel
 var dx: int = 1
 var dy: int = 1
 
-var timer = 6.0
+var timer = 8.0
 
 func _process(delta):
 	rect_position.x += dx*delta*200

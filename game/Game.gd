@@ -28,17 +28,7 @@ func _ready():
 	input.grab_focus()
 	lines = lines_string.split("\n",false)
 	
-	scramble_timer.connect("timeout",self,"scramble")
-	add_child(scramble_timer)
-	scramble_timer.start(2.0)
-	
-	popup_timer.connect("timeout",self,"popup")
-	add_child(popup_timer)
-	popup_timer.start(10)
-	
-	popup2_timer.connect("timeout",self,"popup2")
-	add_child(popup2_timer)
-	popup2_timer.start(10)
+
 	
 func set_required_input(text):
 	required_input = text
@@ -54,14 +44,26 @@ func add_line(text):
 	vbox.move_child(input_line,vbox.get_child_count())
 
 func _on_Input_text_entered(new_text):
-	if new_text != required_input: return
+	if new_text != required_input and required_input != "": return
 	line_number += 1
 	add_line(user.text + input.text)
 	old_text = ""
 	#required_input = lines[randi()%lines.size()]
 	required_input = ""
 	requirement.text = required_input
-	line += 1
+	line += 1	
+	if line == 1:
+		scramble_timer.connect("timeout",self,"scramble")
+		add_child(scramble_timer)
+		scramble_timer.start(2.0)
+		
+		popup_timer.connect("timeout",self,"popup")
+		add_child(popup_timer)
+		popup_timer.start(10)
+		
+		popup2_timer.connect("timeout",self,"popup2")
+		add_child(popup2_timer)
+		popup2_timer.start(10)
 	add_line("You must have root privileges to do that!")
 			
 	
@@ -102,7 +104,7 @@ func popup():
 	
 func popup2():
 	popups2 += 0.5
-	popup2_timer.wait_time = 10*pow(0.9,popups)
+	popup2_timer.wait_time = 6*pow(0.9,popups)
 	print(popup2_timer.wait_time)
 	var popup = preload("res://game/kostur1.tscn").instance()
 	add_child(popup)
@@ -113,7 +115,7 @@ func popup2():
 var old_text = ""
 
 func _on_Input_text_changed(new_text):
-	if required_input != "" and required_input.begins_with(new_text):
+	if required_input == "" or required_input.begins_with(new_text):
 		Global.play_sound(keyboard[randi()%5],-24)
 		old_text = new_text
 		input.caret_position = input.text.length()

@@ -1352,12 +1352,12 @@ roughness = 0.17
 [node name="Camera" type="Camera" parent="svwe4"]
 transform = Transform( 1, 0, 0, 0, 0.913992, 0.405732, 0, -0.405732, 0.913992, 0, 2.674, 5.208 )
 environment = SubResource( 1 )
+current = true
 fov = 41.7
 
 [node name="Camera2" type="Camera" parent="svwe4"]
 transform = Transform( 0.878809, -0.43997, 0.18472, 0, 0.387113, 0.922032, -0.477174, -0.81029, 0.340198, 2.82095, 2.82925, 0.713971 )
 environment = SubResource( 1 )
-current = true
 fov = 68.4
 
 [node name="SpotLight" type="SpotLight" parent="svwe4"]

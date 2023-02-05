@@ -19,10 +19,16 @@ func set_process(a: bool):
 func start_pong():
 	var vc = $Viewport/Control
 	vc.remove_child(vc.get_child(0))
-	var pong = preload("res://game/pong/pong.tscn").instance()
+	var pong = preload("res://game/pong/pongstart.tscn").instance()
 	vc.add_child(pong)
 
 func start_console():
+	var vc = $Viewport/Control
+	vc.remove_child(vc.get_child(0))
+	var console = preload("res://game/console.tscn").instance()
+	vc.add_child(console)
+	
+func start_console2():
 	var vc = $Viewport/Control
 	vc.remove_child(vc.get_child(0))
 	var console = preload("res://game/Game.tscn").instance()

@@ -5,7 +5,7 @@ var velocity: Vector2
 var timer: float = 0.0
 var default_gravity: float = 600
 var gravity: float = default_gravity
-var gravity_increment: float = 40.0
+var gravity_increment: float = 150.0
 var bounces: int = 0
 
 func _ready():
@@ -25,7 +25,7 @@ func _process(delta):
 				timer = 0.1
 				bounces += 1
 				print("da")
-				velocity.x = collider.facing*(250+16.5*bounces)+randf()*200-100
+				velocity.x = collider.facing*(250+0.416*gravity_increment*bounces)+randf()*200-100
 				velocity.y = -600
 				gravity += gravity_increment
 				break

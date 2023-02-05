@@ -227,7 +227,7 @@ tracks/17/keys = {
 "method": "set_process"
 }, {
 "args": [  ],
-"method": "start_pong"
+"method": "start_console"
 } ]
 }
 tracks/18/type = "bezier"
@@ -1352,12 +1352,12 @@ roughness = 0.17
 [node name="Camera" type="Camera" parent="svwe4"]
 transform = Transform( 1, 0, 0, 0, 0.913992, 0.405732, 0, -0.405732, 0.913992, 0, 2.674, 5.208 )
 environment = SubResource( 1 )
-current = true
-fov = 60.1
+fov = 41.7
 
 [node name="Camera2" type="Camera" parent="svwe4"]
 transform = Transform( 0.878809, -0.43997, 0.18472, 0, 0.387113, 0.922032, -0.477174, -0.81029, 0.340198, 2.82095, 2.82925, 0.713971 )
 environment = SubResource( 1 )
+current = true
 fov = 68.4
 
 [node name="SpotLight" type="SpotLight" parent="svwe4"]
@@ -1389,6 +1389,7 @@ omni_attenuation = 1.8025
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="svwe4"]
 autoplay = "New Anim"
+playback_speed = 5.17
 "anims/New Anim" = SubResource( 3 )
 "anims/New Anim2" = SubResource( 4 )
 "anims/New Anim2 ahahahaa smesna vewerzija" = SubResource( 11 )

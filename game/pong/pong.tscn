@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://game/pong/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://game/pong/Ball.tscn" type="PackedScene" id=2]
@@ -19,6 +19,10 @@ extents = Vector2( 252.25, 5 )
 
 [sub_resource type="DynamicFont" id=5]
 size = 64
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 80
 font_data = ExtResource( 4 )
 
 [node name="Pong" type="Node2D"]
@@ -97,6 +101,15 @@ anchor_right = 1.0
 custom_fonts/font = SubResource( 5 )
 text = "120"
 align = 2
+
+[node name="ctrlc" type="Label" parent="."]
+visible = false
+margin_left = 333.0
+margin_top = 61.0
+margin_right = 685.0
+margin_bottom = 142.0
+custom_fonts/font = SubResource( 6 )
+text = "Ctrl + C"
 
 [connection signal="body_entered" from="p1" to="." method="ball_fall" binds= [ 1 ]]
 [connection signal="body_entered" from="p2" to="." method="ball_fall" binds= [ 2 ]]

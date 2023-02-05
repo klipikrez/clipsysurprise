@@ -19,6 +19,10 @@ func ball_fall(body, player):
 	if score2 == 2:
 		Global.emit_signal("pong_done")
 
+func _process(delta):
+	if Input.is_action_just_pressed("close"):
+		Global.start_console2()
+
 func update_score():
 	$CanvasLayer/Score1.text = str(score1)
 	$CanvasLayer/Score2.text = str(score2)

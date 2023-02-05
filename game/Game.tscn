@@ -1,8 +1,8 @@
 [gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://game/Game.gd" type="Script" id=1]
+[ext_resource path="res://ui/console_font.tres" type="DynamicFont" id=2]
 [ext_resource path="res://ui/Consolas.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://ui/ekran2.png" type="Texture" id=4]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -10,107 +10,99 @@
 
 [sub_resource type="StyleBoxEmpty" id=3]
 
+[sub_resource type="DynamicFont" id=8]
+size = 25
+font_data = ExtResource( 3 )
+
 [sub_resource type="Theme" id=4]
+default_font = SubResource( 8 )
 Label/colors/font_color = Color( 0, 1, 0, 1 )
 LineEdit/colors/font_color = Color( 0, 1, 0, 1 )
 LineEdit/styles/focus = SubResource( 1 )
 LineEdit/styles/normal = SubResource( 2 )
 LineEdit/styles/read_only = SubResource( 3 )
 
-[sub_resource type="DynamicFont" id=8]
-size = 25
-font_data = ExtResource( 3 )
+[sub_resource type="StyleBoxEmpty" id=5]
 
-[sub_resource type="Theme" id=5]
-default_font = SubResource( 8 )
-Label/colors/font_color = Color( 0.45098, 0.45098, 0.45098, 1 )
+[sub_resource type="StyleBoxEmpty" id=6]
 
-[sub_resource type="DynamicFont" id=6]
-size = 24
-font_data = ExtResource( 3 )
-
-[sub_resource type="Theme" id=7]
-default_font = SubResource( 6 )
+[sub_resource type="StyleBoxEmpty" id=7]
 
 [node name="Game" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = SubResource( 4 )
 script = ExtResource( 1 )
-lines_string = "U starom Egiptu,
-gdje stolice postoje kao ustaljeni elementi pokućstva,
-one su niske i katkad imaju kose naslone.
-S vaza su poznate grčki stolice s povinutim naslonima i nogama,
-s arheoloških spomenika jednostavne rimski stolice ukrštenih nogu.
-Od antike do danas stolica slijedi ukus vremena,
-ali se u biti ne mijenja.
-Obično ima 4 noge,
-rjeđe 3 (tronog, tronožac):
-sjedište je redovito četverouglasto ili okruglo,
-izrađeno od drveta ili slame,
-katkad prekriveno krznom i debelim tkaninama;
-od 17. stoljeća i tapecirano.
-Nasloni se također izrađuju u različitim oblicima (ravni, savijeni, na prečke);
-ponekad se i oni taperciraju.
-Po plemićkim dvorovima i bogatim gradovima srednjega vijeka stolice sumasivne, izrezbarene, često visoke,
-pa se pod noge sjedećega treba podmetnuti klupica.
-Renesansna stolica pokazuje jednostavne oblike;
-stolice rokokoa čine se poput nekih igračaka,
-a one iz doba ampira doimaju se ukočeno i kruto.
-Poneki put stolica ima i naslone za ruke.
-U 17. stoljeću nastaju udobni, prostrani i meki naslonjači za odmor,
-takozvane fotelje (francuski: fauteuil);
-u 19. stoljeću u modi su kožom presvučene duboke takozvane klupske fotelje.
-Moderno vrijeme stvara funkcionalne tipove stolica,
-prilagođene raznim svrhama i zahtjevima arhitekture, estetike i higijene.
-Međutim, od davnine se sjedilo i po klupama, jastucima i prostiračima po podu,
-tako da neki narodi poput Japanaca i danas ne upotrebljavaju stolicu."
+lines_string = "struct kyber_hctx_data {
+spinlock_t lock;
+struct list_head rqs[KYBER_NUM_DOMAINS];
+unsigned int cur_domain;
+unsigned int batching;
+struct kyber_ctx_queue *kcqs;
+struct sbitmap kcq_map[KYBER_NUM_DOMAINS];
+struct sbq_wait domain_wait[KYBER_NUM_DOMAINS];
+struct sbq_wait_state *domain_ws[KYBER_NUM_DOMAINS];
+atomic_t wait_index[KYBER_NUM_DOMAINS];
+static void kyber_resize_domain
+struct kyber_queue_data *kqd,
+unsigned int sched_domain 
+unsigned int depth
+depth = clamp(depth, 1U, kyber_depth[sched_domain]);
+struct kyber_queue_data *kqd = e->elevator_data;
+int i;timer_shutdown_sync(&kqd->timer);
+blk_stat_disable_accounting(kqd->q);
+for (i = 0; i < KYBER_NUM_DOMAINS; i++)
+sbitmap_queue_free(&kqd->domain_tokens[i]);
+free_percpu(kqd->cpu_latency);
+kfree(kqd);
+static bool kyber_bio_merge(struct request_queue *q
+ struct bio *bio,unsigned int nr_segs)
+struct blk_mq_ctx *ctx = blk_mq_get_ctx(q);
+struct kyber_hctx_data *khd = hctx->sched_data;
+bool merged; spin_lock(&kcq->lock);
+spin_unlock(&kcq->lock); return merged;"
 
-[node name="TextureRect" type="TextureRect" parent="."]
-visible = false
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 4 )
-expand = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-anchor_right = 1.0
-margin_bottom = 40.0
-custom_constants/separation = 8
-
-[node name="LineNumbers" type="VBoxContainer" parent="HBoxContainer"]
-margin_right = 40.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 40, 0 )
-theme = SubResource( 5 )
-
-[node name="1" type="Label" parent="HBoxContainer/LineNumbers"]
-margin_right = 40.0
-margin_bottom = 26.0
-text = "1"
-align = 2
-
-[node name="Code" type="VBoxContainer" parent="HBoxContainer"]
-unique_name_in_owner = true
-margin_left = 48.0
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
 margin_right = 1024.0
-margin_bottom = 40.0
+margin_bottom = 26.0
 size_flags_horizontal = 3
-theme = SubResource( 7 )
 
-[node name="Input" type="LineEdit" parent="HBoxContainer/Code"]
-unique_name_in_owner = true
-margin_right = 976.0
-margin_bottom = 25.0
-custom_colors/cursor_color = Color( 0, 0, 0, 0 )
-caret_blink_speed = 0.1
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
 
-[node name="Label" type="Label" parent="HBoxContainer/Code/Input"]
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+margin_right = 238.0
+margin_bottom = 26.0
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = ExtResource( 2 )
+text = "user@rudnik-soli:"
+
+[node name="Input" type="LineEdit" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+margin_left = 242.0
+margin_right = 1024.0
+margin_bottom = 26.0
+size_flags_horizontal = 3
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_fonts/font = ExtResource( 2 )
+custom_styles/read_only = SubResource( 5 )
+custom_styles/focus = SubResource( 6 )
+custom_styles/normal = SubResource( 7 )
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer/HBoxContainer/Input"]
 show_behind_parent = true
-margin_right = 40.0
-margin_bottom = 14.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
 custom_colors/font_color = Color( 0.45098, 0.45098, 0.45098, 1 )
-text = "rootGetAccess -> true"
+custom_fonts/font = ExtResource( 2 )
+valign = 1
+autowrap = true
 
-[connection signal="text_changed" from="HBoxContainer/Code/Input" to="." method="_on_Input_text_changed"]
-[connection signal="text_entered" from="HBoxContainer/Code/Input" to="." method="_on_LineEdit_text_entered"]
+[connection signal="text_changed" from="ScrollContainer/VBoxContainer/HBoxContainer/Input" to="." method="_on_Input_text_changed"]
+[connection signal="text_entered" from="ScrollContainer/VBoxContainer/HBoxContainer/Input" to="." method="_on_Input_text_entered"]
